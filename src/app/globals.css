@@ -1,0 +1,443 @@
+/* ═══════════════════════════════════════════════════════════
+   PORTFOLIO — FUTURISTIC IT EDITION
+   Typography: Syne (display) + Inter (body) + JetBrains Mono
+   Aesthetic: Dark cyber-minimal · Neon accents · Glass panels
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+  --nav-h: 68px;
+  --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-circ:  cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* ── DARK (default) ─────────────────────────────────────── */
+:root, .dark {
+  --bg:     #05050A;
+  --bg-2:   #090912;
+  --bg-3:   #0D0D1A;
+  --bg-4:   #111122;
+  --fg:     #EEEAF5;
+  --fg-2:   #9892B0;
+  --fg-3:   #50486A;
+  --a:      #6AFFD4;   /* cyan-mint accent */
+  --a2:     #A78BFA;   /* violet secondary */
+  --a3:     #38BDF8;   /* sky tertiary */
+  --ar:     106,255,212;
+  --a2r:    167,139,250;
+  --bd:     rgba(106,255,212,.1);
+  --bd2:    rgba(255,255,255,.05);
+  --glow:   0 0 40px rgba(106,255,212,.15), 0 0 80px rgba(106,255,212,.05);
+}
+
+/* ── LIGHT ──────────────────────────────────────────────────
+   Philosophy: "Warm Studio" — like a designer's desk in the
+   morning light. Warm ivory base, rich amber accents,
+   generous gradient depth. Elegant, not clinical.
+   ─────────────────────────────────────────────────────────── */
+.light {
+  --bg:     #F9F5EE;
+  --bg-2:   #F2EBE0;
+  --bg-3:   #E8DFD0;
+  --bg-4:   #D9CEB8;
+  --fg:     #1A1208;
+  --fg-2:   #46341A;
+  --fg-3:   #9A8260;
+  --a:      #C06000;
+  --a2:     #7040A8;
+  --a3:     #1868A0;
+  --ar:     192,96,0;
+  --a2r:    112,64,168;
+  --bd:     rgba(192,96,0,.22);
+  --bd2:    rgba(26,18,8,.1);
+  --glow:   0 4px 30px rgba(192,96,0,.14), 0 0 70px rgba(192,96,0,.07);
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIGHT MODE — GLOBAL ATMOSPHERE
+   The body gets a flowing warm gradient mesh that scrolls
+   behind all content. No two sections look exactly alike.
+   ════════════════════════════════════════════════════════════ */
+
+/* Body background: fixed warm gradient mesh */
+.light body {
+  background:
+    radial-gradient(ellipse 90% 60% at 10% 5%,  rgba(255,210,130,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 90% 15%,  rgba(255,170, 70,.14) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 60% 55%,  rgba(230,130, 40,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 15% 80%,  rgba(255,200,100,.12) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 85% 90%,  rgba(215,140, 60,.09) 0%, transparent 45%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ── BASE ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .5s, color .5s;
+}
+
+::selection { background: rgba(var(--ar),.2); color: var(--fg); }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--a); }
+
+h1,h2,h3,h4,h5 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--fg);
+}
+
+a { color: inherit; text-decoration: none; }
+img, video { max-width: 100%; display: block; }
+button { border: none; background: none; cursor: pointer; }
+:focus-visible { outline: 1px solid var(--a); outline-offset: 3px; }
+
+/* ── LAYOUT ─────────────────────────────────────────────── */
+@layer components {
+
+  .wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 5rem);
+  }
+
+  .section {
+    padding-block: clamp(6rem, 12vw, 10rem);
+    position: relative;
+    overflow: clip;
+  }
+
+  .text-glow {
+    color: var(--a);
+    text-shadow: 0 0 20px rgba(var(--ar),.5), 0 0 60px rgba(var(--ar),.2);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--a) 0%, var(--a2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: color-mix(in srgb, var(--bg-3) 60%, transparent);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid var(--bd);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 2rem;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--bg);
+    background: var(--a);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .3s, transform .2s;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--a) 0%, var(--a2) 100%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 24px rgba(var(--ar),.4), 0 0 60px rgba(var(--ar),.15);
+    transform: translateY(-1px);
+  }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 2rem;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--fg-2);
+    border: 1px solid var(--bd2);
+    background: transparent;
+    transition: all .3s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--a);
+    color: var(--a);
+    box-shadow: inset 0 0 20px rgba(var(--ar),.05);
+  }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: var(--font-mono);
+    font-size: .6rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--a);
+  }
+  .label::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--a);
+    flex-shrink: 0;
+  }
+
+  .card {
+    border: 1px solid var(--bd2);
+    background: var(--bg-2);
+    transition: border-color .35s, box-shadow .35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(var(--ar),.03) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .35s;
+  }
+  .card:hover { border-color: var(--bd); box-shadow: var(--glow); }
+  .card:hover::before { opacity: 1; }
+
+  .scanlines::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(var(--ar),.007) 3px,
+      rgba(var(--ar),.007) 4px
+    );
+  }
+
+  .corners::before, .corners::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--a);
+    border-style: solid;
+    opacity: .4;
+    transition: opacity .3s, width .3s, height .3s;
+  }
+  .corners::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .corners::after  { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+  .card:hover .corners::before,
+  .card:hover .corners::after { opacity: 1; width: 20px; height: 20px; }
+}
+
+/* ── GSAP INITIAL STATES ─────────────────────────────────── */
+[data-gsap="fade-up"]   { opacity: 0; transform: translateY(40px); }
+[data-gsap="fade-left"] { opacity: 0; transform: translateX(-40px); }
+[data-gsap="fade-right"]{ opacity: 0; transform: translateX(40px); }
+[data-gsap="scale-in"]  { opacity: 0; transform: scale(.92); }
+[data-gsap="line"]      { transform: scaleX(0); transform-origin: left; }
+
+/* ── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes spin-slow{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+@keyframes pulse-ring { 0%{transform:scale(.8);opacity:.7} 100%{transform:scale(2.4);opacity:0} }
+@keyframes grid-flow { 0%{background-position:0 0} 100%{background-position:60px 60px} }
+@keyframes shimmer { from{background-position:-200% center} to{background-position:200% center} }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 639px) {
+  :root { --nav-h: 60px; }
+  .section { padding-block: 4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  [data-gsap] { opacity: 1 !important; transform: none !important; }
+}
+
+@media (hover: none) {
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIGHT MODE COMPONENT OVERRIDES
+   Everything below only applies when .light class is on <html>
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Section backgrounds — each has unique warm gradient ── */
+.light #hero {
+  background:
+    radial-gradient(ellipse 80% 70% at 15% 20%, rgba(255,200,100,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 85% 80%, rgba(230,140,50,.12) 0%, transparent 55%),
+    var(--bg) !important;
+}
+.light #frozen-scene {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255,190,80,.15) 0%, transparent 60%),
+    var(--bg) !important;
+}
+.light #about {
+  background:
+    linear-gradient(165deg, #F5EDDF 0%, #EDE1CE 100%) !important;
+}
+.light #work {
+  background:
+    linear-gradient(145deg, #F8F0E2 0%, #EFE3D0 100%) !important;
+}
+.light #skills {
+  background:
+    linear-gradient(165deg, #F3EAD9 0%, #EAE0CB 100%) !important;
+}
+.light #exp {
+  background:
+    linear-gradient(145deg, #F6EEE0 0%, #ECDFCC 100%) !important;
+}
+.light #contact {
+  background:
+    linear-gradient(165deg, #F4EAD8 0%, #EBDFC9 100%) !important;
+}
+.light footer {
+  background: #EDE3D2 !important;
+  border-top-color: rgba(192,96,0,.1) !important;
+}
+
+/* ── Cards — warm paper with subtle lift ── */
+.light .card {
+  background: rgba(249,245,238,.9);
+  border-color: rgba(192,96,0,.12);
+  box-shadow:
+    0 1px 3px rgba(26,18,8,.06),
+    0 4px 16px rgba(26,18,8,.04),
+    inset 0 1px 0 rgba(255,230,180,.3);
+}
+.light .card:hover {
+  border-color: rgba(192,96,0,.28);
+  box-shadow:
+    0 2px 6px rgba(26,18,8,.08),
+    0 8px 32px rgba(192,96,0,.12),
+    inset 0 1px 0 rgba(255,230,180,.3);
+}
+.light .card::before {
+  background: linear-gradient(135deg, rgba(255,210,130,.1) 0%, transparent 60%);
+}
+
+/* ── Buttons ── */
+.light .btn-primary {
+  color: #F9F5EE;
+  background: var(--a);
+  box-shadow: 0 2px 14px rgba(var(--ar),.3), 0 1px 4px rgba(var(--ar),.2);
+}
+.light .btn-primary:hover {
+  box-shadow: 0 4px 28px rgba(var(--ar),.4), 0 2px 8px rgba(var(--ar),.25);
+}
+.light .btn-ghost {
+  border-color: rgba(192,96,0,.22);
+  background: rgba(192,96,0,.03);
+}
+.light .btn-ghost:hover {
+  border-color: var(--a);
+  color: var(--a);
+  background: rgba(192,96,0,.06);
+}
+
+/* ── Navbar in light ── */
+.light header {
+  box-shadow: 0 1px 0 rgba(26,18,8,.07), 0 6px 24px rgba(26,18,8,.04);
+}
+
+/* ── Text effects ── */
+.light .text-glow {
+  color: var(--a);
+  text-shadow: 0 0 14px rgba(var(--ar),.35), 0 0 40px rgba(var(--ar),.14);
+}
+.light .text-gradient {
+  background: linear-gradient(135deg, var(--a) 0%, var(--a2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Fingerprint in light — warm amber ridges ── */
+.light #frozen-scene .fp-r {
+  stroke: rgba(192,96,0,.2) !important;
+}
+.light #frozen-scene .fp-core-dot {
+  fill: rgba(192,96,0,.8) !important;
+}
+.light #frozen-scene .fp-p1 { stroke: rgba(192,96,0,.8) !important; }
+.light #frozen-scene .fp-p2 { stroke: rgba(192,96,0,.5) !important; }
+.light #frozen-scene .fp-p3 { stroke: rgba(192,96,0,.3) !important; }
+/* Laser color in light mode */
+.light #frozen-scene line[ref] {
+  stroke: var(--a) !important;
+}
+/* Break covers use bg color */
+.light #frozen-scene .fp-break-cover {
+  stroke: #F9F5EE !important;
+}
+
+/* ── Scanlines barely visible ── */
+.light .scanlines::after {
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 4px,
+    rgba(192,96,0,.006) 4px, rgba(192,96,0,.006) 5px
+  );
+}
+
+/* ── Grid backgrounds subdued ── */
+.light #hero > div:first-child,
+.light #frozen-scene > div:nth-child(2) { opacity: .35; }
+
+/* ── Corners in light ── */
+.light .corners::before,
+.light .corners::after { border-color: rgba(192,96,0,.5); }
+
+/* ── Scrollbar ── */
+.light ::-webkit-scrollbar-thumb { background: rgba(var(--ar),.5); }
