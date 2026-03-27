@@ -27,7 +27,7 @@ export default function Progress() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[9997] h-[1.5px]" style={{ background: 'var(--bg-3)' }}>
       <div ref={barRef} className="h-full origin-left" style={{
-        scaleX: 0,
+        transform: 'scaleX(0)',
         background: 'linear-gradient(90deg, var(--a), var(--a2))',
         boxShadow: '0 0 8px rgba(var(--ar),.7)',
       }} />
