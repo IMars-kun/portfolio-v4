@@ -121,7 +121,6 @@ export default function Skills() {
                         data-pct={s.pct}
                         style={{
                           background: `linear-gradient(90deg, color-mix(in srgb, ${g.color} 40%, transparent), ${g.color})`,
-                          scaleX: 0,
                         }}
                       />
                       <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"

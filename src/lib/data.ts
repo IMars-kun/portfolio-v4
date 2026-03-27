@@ -13,15 +13,15 @@ export const me = {
   email:   'berlymarcellino25@gmail.com',
   loc:     'Yogyakarta, Indonesia',
   avail:   'Open to Work',
-  photo:   '/images/photo.jpg',
-  cv:      '/cv.pdf',
+  photo:   'Not Found',
+  cv:      '#hero',
 }
 
 export const socials = [
   { name: 'GitHub',    url: 'https://github.com/IMars-kun',       icon: 'github' },
-  { name: 'LinkedIn',  url: 'https://linkedin.com/in/username',  icon: 'linkedin' },
-  { name: 'Twitter',   url: 'https://twitter.com/username',      icon: 'twitter' },
-  { name: 'Dev.to',    url: 'https://dev.to/username',           icon: 'code2' },
+  { name: 'LinkedIn',  url: 'https://linkedin.com/in/',  icon: 'linkedin' },
+  { name: 'Twitter',   url: 'https://twitter.com/',      icon: 'twitter' },
+  { name: 'Dev.to',    url: 'https://dev.to/',           icon: 'code2' },
 ]
 
 export const navLinks = [
