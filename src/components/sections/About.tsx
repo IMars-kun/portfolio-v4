@@ -9,15 +9,15 @@ import useGsapReveal from '@/hooks/useGsapReveal'
 gsap.registerPlugin(ScrollTrigger)
 
 const traits = [
-  { Icon: Zap,       title: 'Performance First', desc: 'Every ms matters. Sub-100ms API, 95+ Lighthouse, optimized bundles.' },
-  { Icon: Shield,    title: 'Security Minded',   desc: 'Zero-trust architecture, OWASP compliance, secure by design.' },
-  { Icon: GitBranch, title: 'Clean Code',         desc: 'SOLID principles, comprehensive tests, docs yang jelas.' },
+  { Icon: Zap, title: 'Performance First', desc: 'Every ms matters. Sub-100ms API, 95+ Lighthouse, optimized bundles.' },
+  { Icon: Shield, title: 'Security Minded', desc: 'Zero-trust architecture, OWASP compliance, secure by design.' },
+  { Icon: GitBranch, title: 'Clean Code', desc: 'SOLID principles, comprehensive tests, docs yang jelas.' },
 ]
 
 export default function About() {
-  const sRef  = useRef<HTMLElement>(null)
+  const sRef = useRef<HTMLElement>(null)
   const revRef = useGsapReveal({ stagger: 0.1, start: 'top 80%' })
-  const initials = me.name.split(' ').map(w => w[0]).join('').slice(0,2)
+  const initials = me.name.split(' ').map(w => w[0]).join('').slice(0, 2)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -64,8 +64,8 @@ export default function About() {
                 </div>
                 <div className="text-center px-6">
                   <p className="font-mono text-[.6rem]" style={{ color: 'var(--fg-3)' }}>
-                    Add photo to<br/>
-                    <code style={{ color: 'var(--a)' }}>public/images/photo.jpg</code>
+                    Photos<br />
+                    <code style={{ color: 'var(--a)' }}>IMars-kun</code>
                   </p>
                 </div>
               </div>
@@ -79,8 +79,8 @@ export default function About() {
                 </div>
               </div>
               {/* Corner accents */}
-              {[['top-2 left-2','border-t border-l'],['top-2 right-2','border-t border-r'],
-                ['bottom-2 left-2','border-b border-l'],['bottom-2 right-2','border-b border-r']].map(([pos,brd]) => (
+              {[['top-2 left-2', 'border-t border-l'], ['top-2 right-2', 'border-t border-r'],
+              ['bottom-2 left-2', 'border-b border-l'], ['bottom-2 right-2', 'border-b border-r']].map(([pos, brd]) => (
                 <div key={pos} className={`absolute ${pos} w-3 h-3 ${brd}`} style={{ borderColor: 'rgba(var(--ar),.4)' }} />
               ))}
             </div>
@@ -112,7 +112,7 @@ export default function About() {
               <span className="label" data-gsap="fade-up">About Me</span>
               <h2 className="mt-4" data-gsap="fade-up"
                 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}>
-                Passionate about<br/>
+                Passionate about<br />
                 <span className="text-gradient">building things that scale</span>
               </h2>
               <div className="mt-3 h-px w-16" data-gsap="line" style={{ background: 'var(--a)' }} />
@@ -131,7 +131,7 @@ export default function About() {
                 <div key={title} className="card p-4 corners" data-gsap="scale-in">
                   <div className="w-8 h-8 flex items-center justify-center mb-3"
                     style={{ border: '1px solid var(--bd)', color: 'var(--a)', background: 'rgba(var(--ar),.05)' }}>
-                    <Icon size={14}/>
+                    <Icon size={14} />
                   </div>
                   <p className="font-mono text-[.7rem] font-medium mb-1" style={{ color: 'var(--fg)' }}>{title}</p>
                   <p className="font-mono text-[.62rem] leading-relaxed" style={{ color: 'var(--fg-3)' }}>{desc}</p>
@@ -142,10 +142,10 @@ export default function About() {
             {/* Actions */}
             <div className="flex flex-wrap gap-3 mt-2" data-gsap="fade-up">
               <a href={`mailto:${me.email}`} className="btn-primary" data-hover>
-                <span className="flex items-center gap-2"><Mail size={13}/> Get in Touch</span>
+                <span className="flex items-center gap-2"><Mail size={13} /> Get in Touch</span>
               </a>
               <a href={me.cv} download className="btn-ghost" data-hover>
-                <Download size={13}/> Resume
+                <Download size={13} /> Resume
               </a>
             </div>
           </div>
